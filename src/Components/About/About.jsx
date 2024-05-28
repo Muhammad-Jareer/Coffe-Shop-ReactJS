@@ -8,7 +8,7 @@ const About = () => {
       <div className="w-full md:w-1/2 text-center md:text-left">
         <h1 className="text-4xl md:text-5xl font-bold text-gray-800 pt-12">ABOUT OUR SHOP</h1>
         <h2 className="text-3xl text-gray-600 mt-4">Coffee distribution</h2>
-        <p className="text-xl text-gray-600 mt-4">
+        <p className="text-xl text-gray-600 my-4">
           has a more-or-less normal distribution of letters, as opposed to using
           'Content here, content here', making it look like readable English.
           Many desktop publishing packages and web page editors have a

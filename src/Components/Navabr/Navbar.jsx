@@ -1,12 +1,17 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { FaUserAlt } from "react-icons/fa";
 import { FaSearch } from "react-icons/fa"
 import { NavLink } from 'react-router-dom'
 import { FaBars } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa";
-import SignupForm from '../Signup/Signup';
+
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react'
 
 const Navbar = () => {
+
+    let logoRef = useRef(null)
+    let menuRef = useRef(null)
 
     const [menu, setMenu] = useState(false)
 
@@ -14,43 +19,60 @@ const Navbar = () => {
         {
             id: 1,
             title: 'Home',
-            to: ''
+            to: '',
         },
         {
             id: 2,
             title: 'About',
-            to: 'about'
+            to: 'about',
         },
         {
             id: 3,
             title: 'Coffees',
-            to: 'coffees'
+            to: 'coffees',
         },
         {
             id: 4,
             title: 'Shop',
-            to: 'shop'
+            to: 'shop',
         },
         {
             id: 5,
             title: 'Blog',
-            to: 'blog'
+            to: 'blog',
         },
         {
             id: 6,
             title: 'Contact',
-            to: 'contact'
+            to: 'contact',
         },
 
     ]
+
+    useGSAP(() => {
+        let timeline = gsap.timeline();
+
+        timeline.from(logoRef.current, {
+            opacity: 0,
+            x: "100",
+            duration: 1,
+            ease: "power3",
+        }, "")
+        timeline.from(menuRef.current, {
+            opacity: 0,
+            x: "-300",
+            duration: 1,
+            ease: "power3",
+        }, "")
+    })
     
     return (
         <div className="flex justify-between items-center w-full h-16 bg-black fixed z-20 px-8 text-white">
             <div className='max-w-7xl w-full mx-auto flex justify-between items-center'>
-                <h1 className='text-5xl font-signature'>Coffo</h1>
-                <div>
+                <h1 ref={logoRef} className='text-5xl font-signature'>Coffo</h1>
+                <div ref={menuRef}>
                    <ul className='hidden lg:flex items-center gap-10'>
-                        {navigation.map(({id, title, to}) => (
+                        {navigation.map(({id, title, to}, index) => (
                             <NavLink
                             key={id}
                             to={to}
